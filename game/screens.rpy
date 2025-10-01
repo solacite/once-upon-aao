@@ -2,7 +2,7 @@
 ## Initialization
 ################################################################################
 
-init offset = -1
+## (Removed pre-scaled main_menu_cover to avoid NameError issues.)
 
 
 ################################################################################
@@ -27,6 +27,8 @@ style gui_text:
 
 style button:
     properties gui.button_properties("button")
+    # Use a solid color backing for buttons to match the GUI theme.
+    background Solid(gui.button_background_color)
 
 style button_text is gui_text:
     properties gui.text_properties("button")
@@ -135,6 +137,8 @@ style window:
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
+    # Use the textured textbox image so texture is preserved. We'll rely on
+    # darker text for readability.
     background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
 
 style namebox:
@@ -225,6 +229,8 @@ style choice_vbox:
 
 style choice_button is default:
     properties gui.button_properties("choice_button")
+    background Frame("gui/button/choice_idle_background.png", gui.choice_button_borders, tile=gui.choice_button_tile)
+    hover_background Frame("gui/button/choice_hover_background.png", gui.choice_button_borders, tile=gui.choice_button_tile)
 
 style choice_button_text is default:
     properties gui.text_properties("choice_button")
@@ -273,6 +279,8 @@ style quick_menu:
 
 style quick_button:
     properties gui.button_properties("quick_button")
+    background Frame("gui/button/quick_idle_background.png", gui.quick_button_borders, tile=gui.button_tile)
+    hover_background Frame("gui/button/quick_hover_background.png", gui.quick_button_borders, tile=gui.button_tile)
 
 style quick_button_text:
     properties gui.text_properties("quick_button")
@@ -355,7 +363,12 @@ screen main_menu():
     ## This ensures that any other menu screen is replaced.
     tag menu
 
-    add gui.main_menu_background
+    # Show a slightly more zoomed-in cover image for the main menu (centered).
+    # Scale by width only (height=0) to preserve the image's original aspect ratio.
+    # Add the project's main menu background image (preserve aspect by relying
+    # on Ren'Py's scaling). If scaling issues appear, we can supply a pre-cropped
+    # or pre-scaled image file instead.
+    add gui.main_menu_background xalign 0.5 yalign 0.5
 
     ## This empty frame darkens the main menu.
     frame:
@@ -398,9 +411,11 @@ style main_menu_vbox:
 
 style main_menu_text:
     properties gui.text_properties("main_menu", accent=True)
+    color "#000000"
 
 style main_menu_title:
     properties gui.text_properties("title")
+    color "#000000"
 
 style main_menu_version:
     properties gui.text_properties("version")
@@ -1255,7 +1270,8 @@ style skip_text:
 style skip_triangle:
     ## We have to use a font that has the BLACK RIGHT-POINTING SMALL TRIANGLE
     ## glyph in it.
-    font "DejaVuSans.ttf"
+    # Use the GUI text font variable so the project's chosen font is used.
+    font gui.text_font
 
 
 ## Notify screen ###############################################################

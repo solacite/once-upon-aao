@@ -101,7 +101,7 @@ label start:
             "I snuck into a bank and made a statue of the M*na Lisa in someone's vault out of money":
                 $ admissions_score += 2
                 $ lied = True
-                p "Well,I admire dramatic risk."
+                p "Well, I admire dramatic risk."
 
     show faye small at shock_bounce
     n "Faye laughs so hard he almost drops his napkin."
