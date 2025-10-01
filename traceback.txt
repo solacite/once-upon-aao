@@ -1,19 +1,16 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-Compiling ATL code at game/script.rpy:11
-  File "game/script.rpy", line 15, in script
-    scene bg small
-  File "game/script.rpy", line 11, in <module>
-    y
-    ^
-NameError: name 'y' is not defined
+While running game code:
+  File "game/script.rpy", line 103, in script
+    show faye small shock_bounce
+Exception: Image 'faye small' does not accept attributes 'shock_bounce'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 15, in script
-    scene bg small
-  File "renpy/ast.py", line 1480, in execute
+  File "game/script.rpy", line 103, in script
+    show faye small shock_bounce
+  File "renpy/ast.py", line 1357, in execute
     show_imspec(self.imspec, atl=getattr(self, "atl", None))
     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/ast.py", line 730, in show_imspec
@@ -29,36 +26,16 @@ Traceback (most recent call last):
   File "renpy/display/image.py", line 444, in find_target
     self.target = target._duplicate(a)
                   ~~~~~~~~~~~~~~~~~^^^
-  File "renpy/display/transform.py", line 1215, in _duplicate
-    rv.take_execution_state(self)
-    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-  File "renpy/atl.py", line 554, in take_execution_state
-    block = self.compile()
-            ~~~~~~~~~~~~^^
-  File "renpy/atl.py", line 732, in compile
-    block = self.atl.compile(self.context)
-            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-  File "renpy/atl.py", line 926, in compile
-    statements = [i.compile(ctx) for i in self.statements]
-                  ~~~~~~~~~^^^^^                          
-  File "renpy/atl.py", line 1225, in compile
-    child = ctx.eval(expr)
-            ~~~~~~~~^^^^^^
-  File "renpy/atl.py", line 393, in eval
-    return renpy.python.py_eval(expr, locals=self.context)
-           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1292, in py_eval
-    return py_eval_bytecode(code, globals, locals)
-           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1285, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-           ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 11, in <module>
-    y
-    ^
-NameError: name 'y' is not defined
+  File "renpy/display/transform.py", line 1209, in _duplicate
+    args.extraneous()
+    ~~~~~~~~~~~~~~~^^
+  File "renpy/display/displayable.py", line 110, in extraneous
+    raise Exception(
+    ...<4 lines>...
+    )
+Exception: Image 'faye small' does not accept attributes 'shock_bounce'.
 
 Windows-11-10.0.26100-SP0 AMD64
 Ren'Py 8.4.1.25072401
 cliche 1.0
-Tue Sep 30 20:49:32 2025
+Tue Sep 30 22:09:40 2025

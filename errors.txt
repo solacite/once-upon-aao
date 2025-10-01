@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 200: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    "I swear, it was for the honeycakes."
+    ^
+
+Ren'Py Version: Ren'Py 8.4.1.25072401
+Tue Sep 30 22:19:31 2025
